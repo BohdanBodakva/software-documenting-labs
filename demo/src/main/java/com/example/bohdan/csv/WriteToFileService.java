@@ -9,11 +9,8 @@ import java.io.IOException;
 
 @Service
 public class WriteToFileService {
-    private CsvGenerator csvGenerator;
 
-    @Autowired
-    public WriteToFileService(CsvGenerator csvGenerator){
-        this.csvGenerator = csvGenerator;
+    public static void main(String[] args){
         resetCsvFile("result.csv");
         generateRandomStocksWriteToCsvFile(350, "result.csv");
         generateRandomCurrenciesWriteToCsvFile(350, "result.csv");
@@ -22,7 +19,7 @@ public class WriteToFileService {
         System.out.println(CsvParser.parseCsv("result.csv"));
     }
 
-    public void resetCsvFile(String fileName){
+    public static void resetCsvFile(String fileName){
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))){
             writer.write("");
         }
@@ -31,12 +28,12 @@ public class WriteToFileService {
         }
     }
 
-    public void generateRandomStocksWriteToCsvFile(int numberOfStocks, String fileName){
+    public static void generateRandomStocksWriteToCsvFile(int numberOfStocks, String fileName){
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName, true))){
             writer.write(CsvHeader.stockCsvHeader);
             writer.newLine();
             for(int i = 0; i < numberOfStocks; i++){
-                writer.write(csvGenerator.getRandomStock().toCsv());
+                writer.write(new CsvGenerator().getRandomStock().toCsv());
                 writer.newLine();
             }
         }
@@ -45,12 +42,12 @@ public class WriteToFileService {
         }
     }
 
-    public void generateRandomCurrenciesWriteToCsvFile(int numberOfCurrencies, String fileName){
+    public static void generateRandomCurrenciesWriteToCsvFile(int numberOfCurrencies, String fileName){
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName, true))){
             writer.write(CsvHeader.currencyCsvHeader);
             writer.newLine();
             for(int i = 0; i < numberOfCurrencies; i++){
-                writer.write(csvGenerator.getRandomCurrency().toCsv());
+                writer.write(new CsvGenerator().getRandomCurrency().toCsv());
                 writer.newLine();
             }
         }
@@ -59,12 +56,12 @@ public class WriteToFileService {
         }
     }
 
-    public void generateRandomCryptocurrenciesWriteToCsvFile(int numberOfCryptocurrencies, String fileName){
+    public static void generateRandomCryptocurrenciesWriteToCsvFile(int numberOfCryptocurrencies, String fileName){
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName, true))){
             writer.write(CsvHeader.cryptocurrencyCsvHeader);
             writer.newLine();
             for(int i = 0; i < numberOfCryptocurrencies; i++){
-                writer.write(csvGenerator.getRandomCryptocurrency().toCsv());
+                writer.write(new CsvGenerator().getRandomCryptocurrency().toCsv());
                 writer.newLine();
             }
         }
