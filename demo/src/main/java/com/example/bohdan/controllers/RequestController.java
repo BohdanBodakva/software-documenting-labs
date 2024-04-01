@@ -3,10 +3,12 @@ package com.example.bohdan.controllers;
 import com.example.bohdan.controllers.interfaces.CryptocurrencyController;
 import com.example.bohdan.controllers.interfaces.CurrencyController;
 import com.example.bohdan.controllers.interfaces.StockController;
+import com.example.bohdan.csv.CsvParser;
 import com.example.bohdan.entities.Cryptocurrency;
 import com.example.bohdan.entities.Currency;
 import com.example.bohdan.entities.Stock;
 import com.example.bohdan.services.CryptocurrencyService;
+import com.example.bohdan.services.CsvService;
 import com.example.bohdan.services.CurrencyService;
 import com.example.bohdan.services.StockService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,16 +25,26 @@ public class RequestController implements CurrencyController,
     private final CurrencyService currencyService;
     private final StockService stockService;
     private final CryptocurrencyService cryptocurrencyService;
+    private final CsvService csvService;
 
     @Autowired
     public RequestController(CurrencyService currencyService,
                              StockService stockService,
-                             CryptocurrencyService cryptocurrencyService){
+                             CryptocurrencyService cryptocurrencyService,
+                             CsvService csvService){
         this.currencyService = currencyService;
         this.stockService = stockService;
         this.cryptocurrencyService = cryptocurrencyService;
+        this.csvService = csvService;
     }
 
+    @GetMapping("/write-csv-to-db")
+    public String writeCsvToDB(){
+        csvService.writeCsvData(
+                CsvParser.parseCsv("result.csv")
+        );
+        return "DDD";
+    }
 
     @Override
     @GetMapping("/cryptocurrency")

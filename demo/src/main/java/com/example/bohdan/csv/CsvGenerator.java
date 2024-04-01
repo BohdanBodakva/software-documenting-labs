@@ -21,8 +21,8 @@ public class CsvGenerator {
         return new Stock(
                 generateRandomInteger(1, 100),
                 generateRandomDateTime(
-                        LocalDateTime.of(LocalDate.of(2022, 1, 1),
-                        LocalTime.now()), LocalDateTime.now()
+                        LocalDateTime.of(LocalDate.of(2022, 4, 1), LocalTime.now()),
+                        LocalDateTime.now()
                 ),
                 FinancialDataType.STOCK,
                 generateRandomDouble(0, 35),
@@ -42,7 +42,7 @@ public class CsvGenerator {
         return new Currency(
                 generateRandomInteger(1, 100),
                 generateRandomDateTime(
-                        LocalDateTime.of(LocalDate.of(2022, 1, 1),
+                        LocalDateTime.of(LocalDate.of(2022, 4, 1),
                                 LocalTime.now()), LocalDateTime.now()
                 ),
                 FinancialDataType.CURRENCY,
@@ -63,7 +63,7 @@ public class CsvGenerator {
         return new Cryptocurrency(
                 generateRandomInteger(1, 100),
                 generateRandomDateTime(
-                        LocalDateTime.of(LocalDate.of(2022, 1, 1),
+                        LocalDateTime.of(LocalDate.of(2022, 4, 1),
                                 LocalTime.now()), LocalDateTime.now()
                 ),
                 FinancialDataType.CRYPTOCURRENCY,

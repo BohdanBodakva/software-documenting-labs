@@ -12,6 +12,7 @@ import java.time.LocalDateTime;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Inheritance(strategy = InheritanceType.JOINED)
 public abstract class FinancialData {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

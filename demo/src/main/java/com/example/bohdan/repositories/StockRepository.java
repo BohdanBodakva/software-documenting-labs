@@ -14,4 +14,5 @@ public interface StockRepository extends JpaRepository<Stock, Long> {
 //    List<Stock> getAllStocks();
 //    Optional<Stock> getStockById(Long id);
     List<Stock> getAllByDateTime(LocalDateTime dateTime);
+
 }

@@ -21,8 +21,9 @@ public class CsvParser {
                    line.equals(CsvHeader.cryptocurrencyCsvHeader)){
                     currentTable = Arrays.asList(line.split(","));
                     parsedCsv.put(currentTable, new ArrayList<>());
+                } else {
+                    parsedCsv.get(currentTable).add(Arrays.asList(line.split(",")));
                 }
-                parsedCsv.get(currentTable).add(Arrays.asList(line.split(",")));
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
