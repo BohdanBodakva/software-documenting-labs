@@ -39,4 +39,33 @@ public class CryptocurrencyServiceImpl implements CryptocurrencyService {
     public List<Cryptocurrency> getAllCryptocurrencyByDateTime(LocalDateTime dateTime) {
         return cryptocurrencyRepository.getAllByDateTime(dateTime);
     }
+
+    @Override
+    public Cryptocurrency saveCryptocurrency(Cryptocurrency cryptocurrency) {
+        return cryptocurrencyRepository.save(cryptocurrency);
+    }
+
+    @Override
+    public Cryptocurrency updateCryptocurrencyById(Long id, Cryptocurrency cryptocurrency) throws InvalidFinancialDataIdException {
+        Cryptocurrency cryptocurrencyFromDB = cryptocurrencyRepository.findById(id).orElse(null);
+
+        if(cryptocurrencyFromDB != null){
+            cryptocurrencyFromDB = cryptocurrency;
+            cryptocurrencyFromDB.setId(id);
+            return cryptocurrencyRepository.save(cryptocurrencyFromDB);
+        } else {
+            throw new InvalidFinancialDataIdException("Cryptocurrency with id=" + id + " doesn't exist");
+        }
+    }
+
+    @Override
+    public void deleteCryptocurrencyById(Long id) throws InvalidFinancialDataIdException {
+        Cryptocurrency cryptocurrency = cryptocurrencyRepository.findById(id).orElse(null);
+
+        if(cryptocurrency != null){
+            cryptocurrencyRepository.deleteById(id);
+        } else {
+            throw new InvalidFinancialDataIdException("Cryptocurrency with id=" + id + " doesn't exist");
+        }
+    }
 }

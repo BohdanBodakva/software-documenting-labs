@@ -10,4 +10,8 @@ public interface CurrencyController {
     List<Currency> getAllCurrency();
     Currency getCurrencyById(Long id);
     List<Currency> getAllCurrencyByDateTime(String dateTime);
+    Currency saveCurrency(Currency currency);
+    Currency updateCurrencyById(Long id, Currency currency) throws InvalidFinancialDataIdException;
+
+    void deleteCurrencyById(Long id) throws InvalidFinancialDataIdException;
 }

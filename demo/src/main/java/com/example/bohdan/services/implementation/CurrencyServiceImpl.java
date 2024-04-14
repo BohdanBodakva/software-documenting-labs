@@ -39,4 +39,33 @@ public class CurrencyServiceImpl implements CurrencyService {
     public List<Currency> getAllCurrencyByDateTime(LocalDateTime dateTime) {
         return currencyRepository.getAllByDateTime(dateTime);
     }
+
+    @Override
+    public Currency saveCurrency(Currency currency) {
+        return currencyRepository.save(currency);
+    }
+
+    @Override
+    public Currency updateCurrencyById(Long id, Currency currency) throws InvalidFinancialDataIdException {
+        Currency currencyFromDB = currencyRepository.findById(id).orElse(null);
+
+        if(currencyFromDB != null){
+            currencyFromDB = currency;
+            currencyFromDB.setId(id);
+            return currencyRepository.save(currencyFromDB);
+        } else {
+            throw new InvalidFinancialDataIdException("Currency with id=" + id + " doesn't exist");
+        }
+    }
+
+    @Override
+    public void deleteCurrencyById(Long id) throws InvalidFinancialDataIdException {
+        Currency currency = currencyRepository.findById(id).orElse(null);
+
+        if(currency != null){
+            currencyRepository.deleteById(id);
+        } else {
+            throw new InvalidFinancialDataIdException("Currency with id=" + id + " doesn't exist");
+        }
+    }
 }

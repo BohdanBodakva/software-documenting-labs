@@ -10,4 +10,8 @@ public interface StockController {
     List<Stock> getAllStocks();
     Stock getStockById(Long id);
     List<Stock> getAllStocksByDateTime(String dateTime);
+    Stock saveStock(Stock stock);
+    Stock updateStockById(Long id, Stock stock) throws InvalidFinancialDataIdException;
+
+    void deleteStockById(Long id) throws InvalidFinancialDataIdException;
 }

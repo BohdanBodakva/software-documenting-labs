@@ -7,18 +7,22 @@ import com.example.bohdan.csv.CsvParser;
 import com.example.bohdan.entities.Cryptocurrency;
 import com.example.bohdan.entities.Currency;
 import com.example.bohdan.entities.Stock;
+import com.example.bohdan.exceptions.InvalidFinancialDataIdException;
 import com.example.bohdan.services.CryptocurrencyService;
 import com.example.bohdan.services.CsvService;
 import com.example.bohdan.services.CurrencyService;
 import com.example.bohdan.services.StockService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
 @CrossOrigin
-@RestController
-@RequestMapping("/api")
+@Controller
+//@RequestMapping("/api")
 public class RequestController implements CurrencyController,
                                           StockController,
                                           CryptocurrencyController {
@@ -43,27 +47,45 @@ public class RequestController implements CurrencyController,
         csvService.writeCsvData(
                 CsvParser.parseCsv("result.csv")
         );
-        return "DDD";
+        return "Data was successfully written to DB";
     }
-
+// ========================== Cryptocurrency ================================
     @Override
-    @GetMapping("/cryptocurrency")
-    public List<Cryptocurrency> getAllCryptocurrency() {
-        return null;
+//    @GetMapping("/cryptocurrency")
+    public String getAllCryptocurrency(Model model) {
+        List<Cryptocurrency> cryptocurrencyList = cryptocurrencyService.getAllCryptocurrency();
+        ModelAndView mav = new ModelAndView();
+        mav.addObject("cryptocurrencyList", "aaa");
+        return "index";
     }
 
     @Override
     @GetMapping("/cryptocurrency/{id}")
-    public Cryptocurrency getCryptocurrencyById(@PathVariable(name = "id") Long id) {
+    public String getCryptocurrencyById(@PathVariable(name = "id") Long id) {
         return null;
     }
 
     @Override
     @GetMapping("/cryptocurrency/{dateTime}")
-    public List<Cryptocurrency> getAllCryptocurrencyByDateTime(@PathVariable(name = "dateTime") String dateTime) {
+    public String getAllCryptocurrencyByDateTime(@PathVariable(name = "dateTime") String dateTime) {
         return null;
     }
 
+    @Override
+    public String saveCryptocurrency(Cryptocurrency cryptocurrency) {
+        return null;
+    }
+
+    @Override
+    public String updateCryptocurrencyById(Long id, Cryptocurrency cryptocurrency) throws InvalidFinancialDataIdException {
+        return null;
+    }
+
+    @Override
+    public String deleteCryptocurrencyById(Long id) throws InvalidFinancialDataIdException {
+        return null;
+    }
+// ========================== Currency ================================
     @Override
     @GetMapping("/currency")
     public List<Currency> getAllCurrency() {
@@ -83,6 +105,21 @@ public class RequestController implements CurrencyController,
     }
 
     @Override
+    public Currency saveCurrency(Currency currency) {
+        return null;
+    }
+
+    @Override
+    public Currency updateCurrencyById(Long id, Currency currency) throws InvalidFinancialDataIdException {
+        return null;
+    }
+
+    @Override
+    public void deleteCurrencyById(Long id) throws InvalidFinancialDataIdException {
+
+    }
+// ========================== Stock ================================
+    @Override
     @GetMapping("/stocks")
     public List<Stock> getAllStocks() {
         return null;
@@ -98,5 +135,20 @@ public class RequestController implements CurrencyController,
     @GetMapping("/stocks/{dateTime}")
     public List<Stock> getAllStocksByDateTime(@PathVariable(name = "dateTime") String dateTime) {
         return null;
+    }
+
+    @Override
+    public Stock saveStock(Stock stock) {
+        return null;
+    }
+
+    @Override
+    public Stock updateStockById(Long id, Stock stock) throws InvalidFinancialDataIdException {
+        return null;
+    }
+
+    @Override
+    public void deleteStockById(Long id) throws InvalidFinancialDataIdException {
+
     }
 }
