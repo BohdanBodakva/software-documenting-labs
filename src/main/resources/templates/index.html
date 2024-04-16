@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Financial Data</title>
+
+    <link rel="stylesheet" type="text/css" media="all" href="/css/index.css" th:href="@{/css/index.css}" />
+</head>
+<body>
+    <table th:if="${showCryptocurrency}">
+        <caption>
+            <b>CRYPTOCURRENCY</b>
+        </caption>
+        <tr>
+            <td><b>id</b></td>
+            <td><b>volume</b></td>
+            <td><b>dateTime</b></td>
+            <td><b>type</b></td>
+            <td><b>percentChange</b></td>
+            <td><b>change</b></td>
+            <td><b>price</b></td>
+
+            <td><b>volatility</b></td>
+            <td><b>blockchain</b></td>
+            <td><b>symbol</b></td>
+            <td><b>name</b></td>
+
+            <td><b>UPDATE</b></td>
+            <td><b>DELETE</b></td>
+        </tr>
+        <tr th:each="crypto: ${cryptocurrencyList}">
+            <td th:text="${crypto.id}" />
+            <td th:text="${crypto.volume}" />
+            <td th:text="${crypto.dateTime}" />
+            <td th:text="${crypto.type}" />
+            <td th:text="${crypto.percentChange}" />
+            <td th:text="${crypto.change}" />
+            <td th:text="${crypto.price}" />
+
+            <td th:text="${crypto.volatility}" />
+            <td th:text="${crypto.blockchain}" />
+            <td th:text="${crypto.symbol}" />
+            <td th:text="${crypto.name}" />
+
+            <td>
+                <form action="#" th:action="@{/api/update-cryptocurrency/__${crypto.id}__}" th:object="${crypto}" method="get">
+                    <button type="submit">Update</button>
+                </form>
+            </td>
+            <td>
+                <form action="#" th:action="@{/api/cryptocurrency/__${crypto.id}__}" method="post">
+                    <input name="_method" type="hidden" value="delete" />
+                    <button type="submit">Delete</button>
+                </form>
+            </td>
+
+        </tr>
+    </table>
+    <br>
+    <table th:if="${showCurrency}">
+        <caption>
+            <b>CURRENCY</b>
+        </caption>
+        <tr>
+            <td><b>id</b></td>
+            <td><b>volume</b></td>
+            <td><b>dateTime</b></td>
+            <td><b>type</b></td>
+            <td><b>percentChange</b></td>
+            <td><b>change</b></td>
+            <td><b>price</b></td>
+
+            <td><b>country</b></td>
+            <td><b>exchangeRate</b></td>
+            <td><b>symbol</b></td>
+            <td><b>name</b></td>
+        </tr>
+        <tr th:each="currency: ${currencyList}">
+            <td th:text="${currency.id}" />
+            <td th:text="${currency.volume}" />
+            <td th:text="${currency.dateTime}" />
+            <td th:text="${currency.type}" />
+            <td th:text="${currency.percentChange}" />
+            <td th:text="${currency.change}" />
+            <td th:text="${currency.price}" />
+
+            <td th:text="${currency.country}" />
+            <td th:text="${currency.exchangeRate}" />
+            <td th:text="${currency.symbol}" />
+            <td th:text="${currency.name}" />
+
+            <td>
+                <form action="#" th:action="@{/api/update-currency/__${currency.id}__}" th:object="${currency}" method="get">
+                    <button type="submit">Update</button>
+                </form>
+            </td>
+            <td>
+                <form action="#" th:action="@{/api/currency/__${currency.id}__}" method="post">
+                    <input name="_method" type="hidden" value="delete" />
+                    <button type="submit">Delete</button>
+                </form>
+            </td>
+
+        </tr>
+    </table>
+    <br>
+    <table th:if="${showStock}">
+        <caption>
+            <b>STOCK</b>
+        </caption>
+        <tr>
+            <td><b>id</b></td>
+            <td><b>volume</b></td>
+            <td><b>dateTime</b></td>
+            <td><b>type</b></td>
+            <td><b>percentChange</b></td>
+            <td><b>change</b></td>
+            <td><b>price</b></td>
+
+            <td><b>stockType</b></td>
+            <td><b>exchangeInfo</b></td>
+            <td><b>marketCap</b></td>
+            <td><b>name</b></td>
+        </tr>
+        <tr th:each="stock: ${stockList}">
+            <td th:text="${stock.id}" />
+            <td th:text="${stock.volume}" />
+            <td th:text="${stock.dateTime}" />
+            <td th:text="${stock.type}" />
+            <td th:text="${stock.percentChange}" />
+            <td th:text="${stock.change}" />
+            <td th:text="${stock.price}" />
+
+            <td th:text="${stock.stockType}" />
+            <td th:text="${stock.exchangeInfo}" />
+            <td th:text="${stock.marketCap}" />
+            <td th:text="${stock.name}" />
+
+            <td>
+                <form action="#" th:action="@{/api/update-stock/__${stock.id}__}" th:object="${stock}" method="get">
+                    <button type="submit">Update</button>
+                </form>
+            </td>
+            <td>
+                <form action="#" th:action="@{/api/stocks/__${stock.id}__}" method="post">
+                    <input name="_method" type="hidden" value="delete" />
+                    <button type="submit">Delete</button>
+                </form>
+            </td>
+
+        </tr>
+    </table>
+</body>
+</html>

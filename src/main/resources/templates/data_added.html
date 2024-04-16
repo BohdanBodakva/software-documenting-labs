@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Added Data</title>
+</head>
+<body>
+
+<br>
+    <table th:if="${showCryptocurrency}">
+        <caption th:if="${addedCryptocurrency}">
+            <b>Added new Cryptocurrency</b>
+        </caption>
+        <caption th:if="${updatedCryptocurrency}">
+            <b>Updated Cryptocurrency with id = <i th:text="${cryptocurrency.id}"></i></b>
+        </caption>
+        <tr>
+            <td><b>volume</b></td>
+            <td><b>dateTime</b></td>
+            <td><b>type</b></td>
+            <td><b>percentChange</b></td>
+            <td><b>change</b></td>
+            <td><b>price</b></td>
+
+            <td><b>volatility</b></td>
+            <td><b>blockchain</b></td>
+            <td><b>symbol</b></td>
+            <td><b>name</b></td>
+        </tr>
+        <tr>
+            <td th:text="${cryptocurrency.volume}" />
+            <td th:text="${cryptocurrency.dateTime}" />
+            <td th:text="${cryptocurrency.type}" />
+            <td th:text="${cryptocurrency.percentChange}" />
+            <td th:text="${cryptocurrency.change}" />
+            <td th:text="${cryptocurrency.price}" />
+
+            <td th:text="${cryptocurrency.volatility}" />
+            <td th:text="${cryptocurrency.blockchain}" />
+            <td th:text="${cryptocurrency.symbol}" />
+            <td th:text="${cryptocurrency.name}" />
+
+        </tr>
+    </table>
+    <form th:if="${showCryptocurrency}" action="#" th:action="@{/api/cryptocurrency}" method="get">
+        <button type="submit">Cryptocurrency Catalogue</button>
+    </form>
+
+
+    <table th:if="${showCurrency}">
+        <caption th:if="${addedCurrency}">
+            <b>Added new Currency</b>
+        </caption>
+        <caption th:if="${updatedCurrency}">
+            <b>Updated Currency with id = <i th:text="${currency.id}"></i></b>
+        </caption>
+        <tr>
+            <td><b>volume</b></td>
+            <td><b>dateTime</b></td>
+            <td><b>type</b></td>
+            <td><b>percentChange</b></td>
+            <td><b>change</b></td>
+            <td><b>price</b></td>
+
+            <td><b>country</b></td>
+            <td><b>exchangeRate</b></td>
+            <td><b>symbol</b></td>
+            <td><b>name</b></td>
+        </tr>
+        <tr>
+            <td th:text="${currency.volume}" />
+            <td th:text="${currency.dateTime}" />
+            <td th:text="${currency.type}" />
+            <td th:text="${currency.percentChange}" />
+            <td th:text="${currency.change}" />
+            <td th:text="${currency.price}" />
+
+            <td th:text="${currency.country}" />
+            <td th:text="${currency.exchangeRate}" />
+            <td th:text="${currency.symbol}" />
+            <td th:text="${currency.name}" />
+
+        </tr>
+    </table>
+    <form th:if="${showCurrency}" action="#" th:action="@{/api/currency}" method="get">
+        <button type="submit">Currency Catalogue</button>
+    </form>
+
+
+    <table th:if="${showStock}">
+        <caption th:if="${addedStock}">
+            <b>Added new Stock</b>
+        </caption>
+        <caption th:if="${updatedStock}">
+            <b>Updated Stock with id = <i th:text="${stock.id}"></i></b>
+        </caption>
+        <tr>
+            <td><b>volume</b></td>
+            <td><b>dateTime</b></td>
+            <td><b>type</b></td>
+            <td><b>percentChange</b></td>
+            <td><b>change</b></td>
+            <td><b>price</b></td>
+
+            <td><b>country</b></td>
+            <td><b>exchangeRate</b></td>
+            <td><b>symbol</b></td>
+            <td><b>name</b></td>
+        </tr>
+        <tr>
+            <td th:text="${currency.volume}" />
+            <td th:text="${currency.dateTime}" />
+            <td th:text="${currency.type}" />
+            <td th:text="${currency.percentChange}" />
+            <td th:text="${currency.change}" />
+            <td th:text="${currency.price}" />
+
+            <td th:text="${currency.stockType}" />
+            <td th:text="${currency.exchangeInfo}" />
+            <td th:text="${currency.marketCap}" />
+            <td th:text="${currency.name}" />
+
+        </tr>
+    </table>
+    <form th:if="${showStock}" action="#" th:action="@{/api/stocks}" method="get">
+        <button type="submit">Stock Catalogue</button>
+    </form>
+
+
+    <form action="#" th:action="@{/api/}" method="get">
+        <button type="submit">Catalogue</button>
+    </form>
+
+</body>
+</html>

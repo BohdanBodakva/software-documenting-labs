@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Stock</title>
+</head>
+<body>
+  <div th:if="${showCryptocurrency}">
+    <h1 th:if="${addCryptocurrency}">Add New Cryptocurrency</h1>
+    <h1 th:if="${updateCryptocurrency}">Update Cryptocurrency</h1>
+
+    <form th:if="${addCryptocurrency}" action="#" th:action="@{/api/cryptocurrency}" th:object="${cryptocurrency}" method="post">
+        <p>Volume: <input type="number" step="1" th:field="*{volume}" /></p>
+        <p>Change: <input type="number" step="0.01" th:field="*{change}" /></p>
+        <p>Percent Change: <input type="number" step="0.01" th:field="*{percentChange}" /></p>
+        <p>Price: <input type="number" step="0.01" th:field="*{price}" /></p>
+
+        <p>Blockchain: <select th:field="*{blockchain}">
+            <option th:each="blockchain : ${blockchainTypes}" th:value="${blockchain}" th:text="${blockchain}">
+            </option>
+        </select></p>
+        <p>Volatility: <input type="text" th:field="*{volatility}" /></p>
+        <p>Symbol: <select th:field="*{symbol}">
+            <option th:each="symbol : ${cryptocurrencyNames}" th:value="${symbol}" th:text="${symbol}">
+            </option>
+        </select></p>
+        <p>Name: <input type="text" th:field="*{name}" /></p>
+
+        <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+    </form>
+
+    <form th:if="${updateCryptocurrency}" action="#" th:action="@{/api/cryptocurrency/__${id}__}" th:object="${cryptocurrency}" method="post">
+        <input name="_method" type="hidden" value="PUT" />
+        <p>Volume: <input type="number" step="1" th:field="*{volume}" th:value="*{volume}" /></p>
+        <p>Change: <input type="number" step="0.01" th:field="*{change}" th:value="*{change}" /></p>
+        <p>Percent Change: <input type="number" step="0.01" th:field="*{percentChange}" th:value="*{percentChange}" /></p>
+        <p>Price: <input type="number" step="0.01" th:field="*{price}" th:value="*{price}" /></p>
+
+        <p>Blockchain: <select th:field="*{blockchain}" th:value="*{blockchain}">
+            <option th:each="blockchain : ${blockchainTypes}" th:value="${blockchain}" th:text="${blockchain}">
+            </option>
+        </select></p>
+        <p>Volatility: <input type="text" th:field="*{volatility}" th:value="*{volatility}" /></p>
+        <p>Symbol: <select th:field="*{symbol}" th:value="*{symbol}">
+            <option th:each="symbol : ${cryptocurrencyNames}" th:value="${symbol}" th:text="${symbol}">
+            </option>
+        </select></p>
+        <p>Name: <input type="text" th:field="*{name}" th:value="*{name}" /></p>
+
+        <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+
+    </form>
+  </div>
+
+
+
+
+
+
+
+
+  <div th:if="${showCurrency}">
+      <h1 th:if="${addCurrency}">Add New Cryptocurrency</h1>
+      <h1 th:if="${updateCurrency}">Update Cryptocurrency</h1>
+
+      <form th:if="${addCurrency}" action="#" th:action="@{/api/currency}" th:object="${currency}" method="post">
+          <p>Volume: <input type="number" step="1" th:field="*{volume}" /></p>
+          <p>Change: <input type="number" step="0.01" th:field="*{change}" /></p>
+          <p>Percent Change: <input type="number" step="0.01" th:field="*{percentChange}" /></p>
+          <p>Price: <input type="number" step="0.01" th:field="*{price}" /></p>
+
+          <p>Country: <select th:field="*{country}">
+              <option th:each="country : ${countryList}" th:value="${country}" th:text="${country}">
+              </option>
+          </select></p>
+          <p>Exchange Rate: <input type="text" th:field="*{exchangeRate}" /></p>
+          <p>Symbol: <select th:field="*{symbol}">
+              <option th:each="symbol : ${currencyNames}" th:value="${symbol}" th:text="${symbol}">
+              </option>
+          </select></p>
+          <p>Name: <input type="text" th:field="*{name}" /></p>
+
+          <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+      </form>
+
+      <form th:if="${updateCurrency}" action="#" th:action="@{/api/currency/__${id}__}" th:object="${currency}" method="post">
+          <input name="_method" type="hidden" value="PUT" />
+          <p>Volume: <input type="number" step="1" th:field="*{volume}" th:value="*{volume}" /></p>
+          <p>Change: <input type="number" step="0.01" th:field="*{change}" th:value="*{change}" /></p>
+          <p>Percent Change: <input type="number" step="0.01" th:field="*{percentChange}" th:value="*{percentChange}" /></p>
+          <p>Price: <input type="number" step="0.01" th:field="*{price}" th:value="*{price}" /></p>
+
+          <p>Country: <select th:field="*{country}" th:value="*{country}">
+              <option th:each="country : ${countryList}" th:value="${country}" th:text="${country}">
+              </option>
+          </select></p>
+          <p>Exchange Rate: <input type="text" th:field="*{exchangeRate}" th:value="*{exchangeRate}" /></p>
+          <p>Symbol: <select th:field="*{symbol}" th:value="*{symbol}">
+              <option th:each="symbol : ${currencyNames}" th:value="${symbol}" th:text="${symbol}">
+              </option>
+          </select></p>
+          <p>Name: <input type="text" th:field="*{name}" th:value="*{name}" /></p>
+
+          <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+
+      </form>
+  </div>
+
+
+
+
+
+
+
+
+
+  <div th:if="${showStock}">
+    <h1 th:if="${addStock}">Add New Stock</h1>
+    <h1 th:if="${updateStock}">Update Stock</h1>
+
+      <form th:if="${addStock}" action="#" th:action="@{/api/stocks}" th:object="${stock}" method="post">
+          <p>Volume: <input type="number" step="1" th:field="*{volume}" /></p>
+          <p>Change: <input type="number" step="0.01" th:field="*{change}" /></p>
+          <p>Percent Change: <input type="number" step="0.01" th:field="*{percentChange}" /></p>
+          <p>Price: <input type="number" step="0.01" th:field="*{price}" /></p>
+
+          <p>Stock Type: <select th:field="*{stockType}">
+              <option th:each="stockType : ${stockTypes}" th:value="${stockType}" th:text="${stockType}">
+              </option>
+          </select></p>
+          <p>Exchange Info: <input type="text" th:field="*{exchangeInfo}" /></p>
+          <p>Market Cap: <input type="number" step="0.01" th:field="*{marketCap}" /></p>
+          <p>Name: <input type="text" th:field="*{name}" /></p>
+
+          <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+      </form>
+
+      <form th:if="${updateStock}" action="#" th:action="@{/api/stocks/__${id}__}" th:object="${stock}" method="post">
+          <input name="_method" type="hidden" value="PUT" />
+          <p>Volume: <input type="number" step="1" th:field="*{volume}" th:value="*{volume}" /></p>
+          <p>Change: <input type="number" step="0.01" th:field="*{change}" th:value="*{change}" /></p>
+          <p>Percent Change: <input type="number" step="0.01" th:field="*{percentChange}" th:value="*{percentChange}" /></p>
+          <p>Price: <input type="number" step="0.01" th:field="*{price}" th:value="*{price}" /></p>
+
+          <p>Stock Type: <select th:field="*{stockType}" th:value="*{stockType}">
+              <option th:each="stockType : ${stockTypes}" th:value="${stockType}" th:text="${stockType}">
+              </option>
+          </select></p>
+          <p>Exchange Info: <input type="text" th:field="*{exchangeInfo}" th:value="*{exchangeInfo}" /></p>
+          <p>Market Cap: <input type="number" step="0.01" th:field="*{marketCap}" th:value="*{marketCap}" /></p>
+          <p>Name: <input type="text" th:field="*{name}" th:value="*{name}" /></p>
+
+          <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+
+      </form>
+  </div>
+
+</body>
+</html>
