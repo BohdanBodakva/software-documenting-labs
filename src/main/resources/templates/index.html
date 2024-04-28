@@ -7,6 +7,15 @@
     <link rel="stylesheet" type="text/css" media="all" href="/css/index.css" th:href="@{/css/index.css}" />
 </head>
 <body>
+    <form action="#" th:action="@{/api/add-cryptocurrency}" method="get">
+        <button type="submit">Add Cryptocurrency</button>
+    </form>
+    <form action="#" th:action="@{/api/add-currency}" method="get">
+        <button type="submit">Add Currency</button>
+    </form>
+    <form action="#" th:action="@{/api/add-stock}" method="get">
+        <button type="submit">Add Stock</button>
+    </form>
     <table th:if="${showCryptocurrency}">
         <caption>
             <b>CRYPTOCURRENCY</b>

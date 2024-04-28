@@ -58,4 +58,19 @@ public class Stock extends FinancialData implements SerializableToCsv {
                 getMarketCap() + "," +
                 getName();
     }
+
+    public String toJson(){
+        return "{" +
+                "\"volume\": \"" + getVolume() + "\"," +
+                "\"dateTime\": \"" + getDateTime() + "\"," +
+                "\"type\": \"" + getType() + "\"," +
+                "\"percentChange\": \"" + getPercentChange() + "\"," +
+                "\"change\": \"" + getChange() + "\"," +
+                "\"price\": \"" + getPrice() + "\"," +
+                "\"stockType\": \"" + getStockType().toString() + "\"," +
+                "\"exchangeInfo\": \"" + getExchangeInfo() + "\"," +
+                "\"marketCap\": \"" + getMarketCap() + "\"," +
+                "\"name\": \"" + getName() + "\"" +
+                "}";
+    }
 }

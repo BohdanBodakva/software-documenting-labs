@@ -184,8 +184,8 @@ public class RequestController {
 
     @GetMapping("/add-currency")
     public String saveCurrency(Model model) {
-        model.addAttribute("currency", new Stock());
-        model.addAttribute("country", Countries.values());
+        model.addAttribute("currency", new Currency());
+        model.addAttribute("countryList", Countries.values());
         model.addAttribute("currencyNames", CurrencyNames.values());
         model.addAttribute("showCurrency", true);
         model.addAttribute("addCurrency", true);
